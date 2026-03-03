@@ -11,7 +11,7 @@
 [![LinkedIn](https://img.shields.io/badge/🔗%20LinkedIn-Connect-blue?style=flat)](https://www.linkedin.com/in/khajanbhatt/)
 [![Resume](https://img.shields.io/badge/📄%20Resume-View-green?style=flat)](https://khajan38.github.io/Resume/Khajan-Bhatt-Resume.pdf)
 [![Codolio](https://img.shields.io/badge/💼%20Codolio-View-purple?style=flat)](https://codolio.com/profile/khajan_bhatt)
-[![LeetCode](https://img.shields.io/badge/LeetCode-Profile-orange?style=flat&logo=leetcode)](https://leetcode.com/u/tanujbhatt8279/)
+[![LeetCode](https://img.shields.io/badge/LeetCode-Profile-orange?style=flat&logo=leetcode)](https://leetcode.com/u/khajan_bhatt/)
 
 </div>
 
@@ -19,15 +19,10 @@
 
 I'm a B.Tech CSE student at Graphic Era Hill University, driven by a love for building innovative solutions through code. Passionate about building scalable web applications and diving deep into machine learning and AI. I love transforming complex problems into elegant, efficient solutions through code. Whether it's crafting modern UI/UX with React, building robust backends with Node.js or Django, or training ML models for real-world impact—I'm all in.
 
-- 🌱 Currently mastering the React.js + Python (Flask/Django) + MongoDB/MySQL/PostgreSQL
-- 🔍 Exploring **Artificial Intelligence & Machine Learning** applications
+- 🌱 Currently mastering the Next.js + Python (Flask/Django) + MongoDB/MySQL/PostgreSQL
 - 💻 Building projects that solve real-world problems with clean, efficient code
 - 🚀 Open to collaboration on innovative development projects
 - 📧 Reach me at: **tanujbhatt8279@gmail.com**
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Khajan38&show_icons=true&theme=tokyonight" alt="Khajan Bhatt's GitHub statistics showing commits, PRs, issues, and contributions" />
-</div>
 
 ## 📚 Education & Academic Background
 
@@ -36,7 +31,7 @@ I'm a B.Tech CSE student at Graphic Era Hill University, driven by a love for bu
     <td><img src="https://img.icons8.com/color/48/000000/graduation-cap.png" alt="B.Tech Degree Icon"/></td>
     <td>
       <h3>B.Tech in Computer Science and Engineering</h3>
-      <p>Graphic Era Hill University, Bhimtal (2023-2027), CGPA = 9.63</p>
+      <p>Graphic Era Hill University, Bhimtal (2023-2027), CGPA = 9.5</p>
       <p><em>Core focus: Data Structures & Algorithms, Web Development, AI/ML</em></p>
     </td>
   </tr>
@@ -73,27 +68,19 @@ I'm a B.Tech CSE student at Graphic Era Hill University, driven by a love for bu
 <p>
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Markup" />
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3 Styling" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS Framework" />
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React JS Framework" />
-  <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap Framework" />
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js Framework" />
 </p>
 
 <h3>Backend Development and Databases</h3>
 <p>
   <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask Framework" />
-  <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django Framework" />
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI Backend Framework" />
   <img src="https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL Database" />
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL Database" />
   <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB Database" />
-</p>
-
-<h3>AI/ML Technologies</h3>
-<p>
-  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow" />
-  <img src="https://img.shields.io/badge/Scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Scikit-learn" />
-  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas" />
-  <img src="https://img.shields.io/badge/Numpy-013243?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy" />
-  <img src="https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white" alt="Matplotlib" />
-  <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV" />
+  <img src="https://img.shields.io/badge/SQLAlchemy-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white" alt="SQLAlchemy ORM" />
 </p>
 
 <h3>Build & Version Control</h3>
@@ -102,6 +89,7 @@ I'm a B.Tech CSE student at Graphic Era Hill University, driven by a love for bu
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
   <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  <img src="https://img.shields.io/badge/GitLab-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white" alt="GitLab Version Control" />
 </p>
 
 <h3>Development Tools</h3>
@@ -142,7 +130,7 @@ I'm a B.Tech CSE student at Graphic Era Hill University, driven by a love for bu
 
 ---
 
-### 🛒 TRENDIFY - E-Commerce Store
+### 🛒 HUNARBAZAAR - MULTI-LINGUAL E-CLOTHING SITE
  - Built a scalable E-Commerce website with React.js, supports real-time product search, cart, and checkout features.
  - Designed secure order flow by integrating a custom AES-128 encryption system in C++ for delivery data.
  - Encrypted QR codes with user and agent details, enabling role-based decryption only by verified agents.
