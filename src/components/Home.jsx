@@ -1,7 +1,5 @@
 // https://www.davisryan.tech/
 // https://www.dalyabaron.com/
-// https://rekhchandsahu.com/
-// https://cpro-portfolio-html.netlify.app/#projects
 import webDevGIF from "../assets/web-dev.gif";
 import myPic from "../assets/my-pic.jfif";
 import male from "../assets/male.jpg";
@@ -17,8 +15,8 @@ const Home = () => {
         </figure>
         <section className="flex flex-col gap-1 md:gap-2 justify-center items-center text-center">
           <span className="font-great text-2xl md:text-4xl font-bold text-accent-text-strong"> Hi, I'm Khajan Bhatt</span>
-          <span className="font-merriweather text-lg md:text-2xl text-muted font-bold">a Software Developer</span>
-          <span className="text-sm md:text-base my-2 mr-10">I am interested in the design and implementation of software systems that are both efficient and resilient. My work spans <strong>Full-Stack Development, Backend Engineering,</strong> and <strong> Secure Application Design</strong>, with a strong emphasis on algorithmic thinking and problem solving.</span>
+          <span className="font-merriweather text-xl md:text-2xl text-muted font-bold">a Software Developer</span>
+          <span className="text-sm md:text-base my-2 md:mr-10">I am interested in the design and implementation of software systems that are both efficient and resilient. My work spans <strong>Full-Stack Development, Backend Engineering,</strong> and <strong> Secure Application Design</strong>, with a strong emphasis on algorithmic thinking and problem solving.</span>
           <span className="text-sm md:text-base md:mx-20">I am particularly drawn to challenges involving performance optimization, architecture design, and translating theoretical computer science concepts into practical solutions.</span>
         </section>
       </section>

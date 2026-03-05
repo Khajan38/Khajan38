@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from config import mongo_client
 from routes.cp_schema import cp_router
+from routes.dsa_mode import dsa_mode_router
 BASE_URI = os.getenv("BASE_URI")
 
 @asynccontextmanager
@@ -15,6 +16,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Portfolio: Khajan Bhatt", lifespan=lifespan)
 app.include_router(cp_router, prefix="/api", tags=["CP Platforms Management"])
+app.include_router(dsa_mode_router, prefix="/api", tags=["CP Platforms Management"])
 
 app.add_middleware(CORSMiddleware, allow_origins=[BASE_URI], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 

@@ -20,13 +20,14 @@
   --font-great: Georgia, serif;
   
   --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.5rem;
-  --text-2xl: 2rem;
+  --text-sm: 0.875rem; /*text-xs*/
+  --text-base: 1rem; /*text-sm*/
+  --text-lg: 1.125rem; /*text-base*/
+  --text-xl: 1.5rem; /*text-lg*/
+  --text-2xl: 2rem; /*text-xl*/
   --text-3xl: 2.5rem;
-  --text-4xl: 3rem;
+  --text-4xl: 3rem; /*text-2xl*/
+
 }
 
 * {
@@ -90,12 +91,12 @@ a {
   font-size: 18px;
   font-weight: 600;
   text-align: center;
-  color: white;
+  color: var(--color-accent-text);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.4s ease-in-out;
 }
 .toast-message.processing {
-  background-color: #007bff;
+  background-color: var(--color-accent);
 }
 .toast-message.error {
   background-color: #dc3545;

@@ -34,7 +34,7 @@ const Header = () => {
 
 const NavbarSupplement = ({ windowWidth, dropdownVisible=null, setDropdownVisible=null}) => {
   return (
-  <nav className="absolute top-18 right-5 flex flex-col gap-2 bg-transparent md:top-auto md:right-auto md:relative md:flex-row md:gap-6" aria-label="Primary Navigation">
+  <nav className="text-base absolute top-18 right-5 flex flex-col gap-2 bg-transparent md:top-auto md:right-auto md:relative md:flex-row md:gap-6" aria-label="Primary Navigation">
     <NavLink onClick={() => dropdownVisible && windowWidth < 768 && setDropdownVisible(false)} to="/" className={({ isActive }) => `md:p-0 px-4 py-2 rounded-2xl z-10 ${isActive ? "md:underline" : ""}`} style={({ isActive }) => ({color: windowWidth < 768? "var(--color-accent-text)" : isActive ? "var(--color-accent-text-strong)" : "var(--color-accent-text)", fontWeight: isActive ? "bold" : "", backgroundColor: windowWidth >= 768? "transparent" : isActive ? "var(--color-accent-strong)" : "var(--color-accent)"})}> Home </NavLink>
     <a onClick={() => dropdownVisible && windowWidth < 768 && setDropdownVisible(false)} href={`${RESUME_URL}`} target="_blank" rel="noopener noreferrer" className="md:p-0 px-4 py-2 rounded-2xl z-10" style={{color: windowWidth < 768? "var(--color-accent-text)" : "var(--color-accent-text)", backgroundColor: windowWidth >= 768? "transparent" : "var(--color-accent)"}} aria-label="Download Resume"> Resume </a>
     <NavLink onClick={() => dropdownVisible && windowWidth < 768 && setDropdownVisible(false)} to="/profiles" className={({ isActive }) => `md:p-0 px-4 py-2 rounded-2xl z-10 ${isActive ? "md:underline" : ""}`} style={({ isActive }) => ({color: windowWidth < 768? "var(--color-accent-text)" : isActive ? "var(--color-accent-text-strong)" : "var(--color-accent-text)", fontWeight: isActive ? "bold" : "", backgroundColor: windowWidth >= 768? "transparent" : isActive ? "var(--color-accent-strong)" : "var(--color-accent)"})}> Technical Profiles </NavLink>
@@ -48,12 +48,12 @@ const Footer = () => {
   return (
     <footer className="flex flex-col gap-3 justify-center items-center m-0 px-auto py-4 bg-surface-dark text-surface-dark-text w-full mt-auto" aria-label="Footer">
 
-      <section className="flex gap-5" aria-label="Social Media Links">
-        <a href={`https://www.linkedin.com/in/${LINKEDIN_USERNAME}/`} target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" title="LinkedIn"> <FontAwesomeIcon icon={faLinkedin} className="text-2xl" aria-hidden="true" /></a>
-        <a href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noreferrer" aria-label="GitHub Profile" title="GitHub"> <FontAwesomeIcon icon={faGithub} className="text-2xl" aria-hidden="true" /></a>
-        <a href={`https://www.instagram.com/${INSTAGRAM_CLIENT_ID}/`} target="_blank" rel="noreferrer" aria-label="Instagram Profile" title="Instagram"> <FontAwesomeIcon icon={faInstagram} className="text-2xl" aria-hidden="true" /></a>
-        <a href={`https://x.com/${TWITTER_CLIENT_ID}`} target="_blank" rel="noreferrer" aria-label="Twitter Profile" title="Twitter"> <FontAwesomeIcon icon={faXTwitter} className="text-2xl" aria-hidden="true" /></a>
-        <a href={`mailto:${EMAIL_ADDRESS}`} target="_blank" rel="noreferrer" aria-label="Email" title="E-Mail"><FontAwesomeIcon icon={faEnvelope} className="text-2xl" aria-hidden="true" /></a>
+      <section className="flex gap-5 text-2xl" aria-label="Social Media Links">
+        <a href={`https://www.linkedin.com/in/${LINKEDIN_USERNAME}/`} target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" title="LinkedIn"> <FontAwesomeIcon icon={faLinkedin} aria-hidden="true" /></a>
+        <a href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noreferrer" aria-label="GitHub Profile" title="GitHub"> <FontAwesomeIcon icon={faGithub} aria-hidden="true" /></a>
+        <a href={`https://www.instagram.com/${INSTAGRAM_CLIENT_ID}/`} target="_blank" rel="noreferrer" aria-label="Instagram Profile" title="Instagram"> <FontAwesomeIcon icon={faInstagram} aria-hidden="true" /></a>
+        <a href={`https://x.com/${TWITTER_CLIENT_ID}`} target="_blank" rel="noreferrer" aria-label="Twitter Profile" title="Twitter"> <FontAwesomeIcon icon={faXTwitter} aria-hidden="true" /></a>
+        <a href={`mailto:${EMAIL_ADDRESS}`} target="_blank" rel="noreferrer" aria-label="Email" title="E-Mail"><FontAwesomeIcon icon={faEnvelope} aria-hidden="true" /></a>
       </section>
 
       <p>© 2025 Khajan Bhatt | All rights reserved</p>

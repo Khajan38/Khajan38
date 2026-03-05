@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from multiprocessing.managers import Array
 from typing import List, Dict
 
 @dataclass
@@ -46,3 +47,11 @@ class GlobalStats:
     badges: List[Badge] = field(default_factory=list)
     difficulty: Dict[str, int] = field(default_factory=dict)
     cp_difficulty: Dict[str, int] = field(default_factory=dict)
+
+@dataclass
+class Question:
+    name: str = None
+    platform: str = None
+    difficulty: str = None
+    problemUrl: str = None
+    topics: List[str] = field(default_factory=list)

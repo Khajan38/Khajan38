@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from dataclasses import asdict
 from config import db, CP_PROFILE_LINKS, CP_USERNAMES
 from routes.aggregator import fetch_all
+
 cp_router = APIRouter()
 CACHE_DURATION_HOURS = 12
 
