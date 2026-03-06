@@ -1,8 +1,9 @@
+import random
+from copy import deepcopy
 import httpx, subprocess, os
 from dataclasses import asdict
 from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import JSONResponse
-from config import logger
 from routes.cp_structures import Question
 
 dsa_mode_router = APIRouter()
@@ -101,3 +102,22 @@ async def submit_code(file: UploadFile = File(...)):
         if os.path.exists(exe): os.remove(exe)
         class_file = classname + ".class"
         if os.path.exists(class_file): os.remove(class_file)
+
+ORIGINAL_KONAMI = ['↑','↑','↓','↓','←','→','←','→','B','A','Enter','Blank']
+
+@dsa_mode_router.get("/cp/konami/puzzle")
+def randomizeKonami():
+    cols, size, blank = 4, 12, 11
+    grid = deepcopy(ORIGINAL_KONAMI)
+    for _ in range(200):
+        row = blank // cols
+        col = blank % cols
+        possible_moves = []
+        if row + 1 < 3: possible_moves.append(blank + cols)
+        if row - 1 >= 0: possible_moves.append(blank - cols)
+        if col + 1 < cols: possible_moves.append(blank + 1)
+        if col - 1 >= 0: possible_moves.append(blank - 1)
+        swap_index = random.choice(possible_moves)
+        grid[blank], grid[swap_index] = grid[swap_index], grid[blank]
+        blank = swap_index
+    return {"rearranged_konami": grid, "original_konami": ORIGINAL_KONAMI}

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const QuestionTally = ({globalStats}) => {
   const COLORS = ["#2563EB", "#16A34A", "#DC2626", "#EAB308"];
   return (
-    <section className="bg-card border shadow-md border-card-border rounded-lg px-4 pt-4 flex flex-col justify-center items-center text-center">
+    <section className="card bg-card border shadow-md border-card-border rounded-lg px-4 pt-4 flex flex-col justify-center items-center text-center">
       <h2 className="text-base md:text-lg font-semibold mb-2 text-muted font-merriweather">Problems Solved</h2>
       <hr className="text-sm md:text-base text-muted w-full h-1.5 mb-1"/>
       <h2 className="text-sm md:text-base font-semibold text-muted">Data Structures and Algorithms</h2>
@@ -58,7 +58,7 @@ const ContestTally = ({idvStats, platformIcons, total_contests}) => {
   }, [curPlatform, idvStats]);
   
   return(<>
-    <section className="bg-card border shadow-md border-card-border rounded-lg p-4 grid grid-cols-[1fr_2fr] justify-center items-center text-center gap-2">
+    <section className="card bg-card border shadow-md border-card-border rounded-lg p-4 grid grid-cols-[1fr_2fr] justify-center items-center text-center gap-2">
       <div className="relative h-full w-full items-center justify-center flex flex-col gap-2">
         <InfoIcon text="Total Contests are calculated from LeetCode, Codeforces, CodeChef, and Atcoder. Note: No data available for GFG." />
         <h2 className="text-base md:text-lg text-muted font-semibold mb-2 px-2">Contests</h2>
@@ -111,7 +111,7 @@ const RankTally = ({idvStats, links}) => {
     "codechef": {"1★": "#808080", "2★": "#1E7D22", "3★": "#3366CC", "4★": "#684273", "5★": "#FFB800", "6★": "#FF7F00", "7★": "#FF0000"}
   }
   return(
-  <section className="bg-card border shadow-md border-card-border rounded-lg p-4 flex flex-col justify-center items-center text-center">
+  <section className="card bg-card border shadow-md border-card-border rounded-lg p-4 flex flex-col justify-center items-center text-center">
     <h2 className="text-base md:text-lg font-semibold mb-2 text-muted font-merriweather">Contest Rankings</h2>
 
     <hr className="text-muted w-full h-1.5 mb-2"/>

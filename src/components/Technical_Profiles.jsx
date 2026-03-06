@@ -6,7 +6,7 @@ import { MySheet } from "./DSA_Mode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import CodeTheKonami from "./CodeTheKonami";
-import CatchTheKonami from "./CatchTheKonami";
+import RearrangeTheKonami from "./RearrangeTheKonami";
 import Konami1 from "../assets/Konami1.png";
 import Konami2 from "../assets/Konami2.gif";
 const BASE_URI = import.meta.env.VITE_APP_API_BASE_URL;
@@ -69,6 +69,19 @@ const Technical_Profiles = () => {
   }, []);
 
   useEffect(() => {
+    const cards = document.querySelectorAll(".card");
+    if (!cards.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("card-visible");
+        });
+      }, { threshold: 0.2 }
+    ); cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  });
+
+  useEffect(() => {
     const code = konamiInput.trim().split(" ").join("");
     const konami = "↑↑↓↓←→←→BA";
     if (code === konami){setCodeSuccessful(true); setGame(0);}
@@ -101,24 +114,24 @@ const Technical_Profiles = () => {
 
         <section className="flex flex-col gap-5 w-full">
           <div className="flex justify-center gap-6 md:justify-between md:gap-0 w-full p-0">
-            <section className="bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative">
+            <section className="card bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative">
               <InfoIcon text="Total Questions are calculated from LeetCode, Codeforces, CodeChef, and GFG. Note: No data available for AtCoder." />
               <h2 className="text-base md:text-lg text-muted font-semibold mb-2 px-2">Total Questions</h2>
               <p className="text-xl md:text-2xl font-bold">{globalStats.total_solved}</p>
             </section>
-            <section className="bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative">
+            <section className="card bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative">
               <InfoIcon text="Total Submissions are calculated from LeetCode. Note: No data available for AtCoder." />
               <h2 className="text-base md:text-lg text-muted font-semibold mb-2 px-2">Submissions</h2>
               <p className="text-xl md:text-2xl font-bold">{globalStats.total_submissions}</p>
             </section>
-            <section className="hidden md:block bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative">
+            <section className="card hidden md:block bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative">
               <InfoIcon text="Badges are taken from LeetCode." />
               <h2 className="text-base md:text-lg text-muted font-semibold mb-2 px-2">Badges</h2>
               <p className="text-xl md:text-2xl font-bold">{globalStats.badges?.length}</p>
             </section>
           </div>
           <ContestTally idvStats={idvStats} platformIcons={platformIcons} total_contests={globalStats.total_contests}/>
-          <section className="bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative">
+          <section className="card bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative">
             <h2 className="text-base md:text-lg font-semibold mb-2 text-muted font-merriweather">Badges Earned</h2>
             <hr className="text-muted w-full h-1.5"/>
             <div className="mt-4 flex flex-wrap gap-4 justify-center align-center">
@@ -159,11 +172,11 @@ const Technical_Profiles = () => {
       <div className="flex gap-5">
         <button className="bg-primary hover:bg-primary-strong text-surface-light-text px-4 py-2 rounded-lg z-1" onClick={() => {setKonamiInput("↑↑↓↓←→←→BA"); setGame(0);}}>Auto-Fill Konami Code</button>
         <button className="bg-secondary hover:bg-secondary-strong text-surface-light-text px-4 py-2 rounded-lg" onClick={() => {setGame(1); setCodeSuccessful(false); setKonamiInput("");}}>Code The Konami</button>
-        <button className="bg-secondary hover:bg-secondary-strong text-surface-light-text px-4 py-2 rounded-lg" onClick={() => {setGame(2); setCodeSuccessful(false); setKonamiInput("");}}>Catch the Konami</button>
+        <button className="bg-secondary hover:bg-secondary-strong text-surface-light-text px-4 py-2 rounded-lg" onClick={() => {setGame(2); setCodeSuccessful(false); setKonamiInput("");}}>Rearrange the Konami</button>
       </div>
     </section>
     {game === 1 && <CodeTheKonami setCodeSuccessful={setCodeSuccessful} setGame={setGame} />}
-    {game === 2 && <CatchTheKonami setCodeSuccessful={setCodeSuccessful} setGame={setGame} />}
+    {game === 2 && <RearrangeTheKonami setCodeSuccessful={setCodeSuccessful} setGame={setGame} />}
     <MySheet codeSuccessful={codeSuccessful} setCodeSuccesful={setCodeSuccessful} setKonamiInput={setKonamiInput} platformIcons={platformIcons}/>
     <MarqueeCard links={links} usernames={usernames}/>
   </div>)

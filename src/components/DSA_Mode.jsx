@@ -30,6 +30,19 @@ const MySheet = ({codeSuccessful, setCodeSuccesful, setKonamiInput, platformIcon
     }; fetchSheet();
     return () => abortController.abort();
   }, [codeSuccessful]);
+
+  useEffect(() => {
+    const cards = document.querySelectorAll(".card");
+    if (!cards.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("card-visible");
+        });
+      }, { threshold: 0.2 }
+    ); cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  });
   
   if (!codeSuccessful) return;
   if(loading) return <>
@@ -42,7 +55,7 @@ const MySheet = ({codeSuccessful, setCodeSuccesful, setKonamiInput, platformIcon
   </>
   return (
   <>
-    <section className="bg-card border shadow-md border-card-border rounded-2xl py-4 px-6 flex flex-col justify-center items-center text-center relative w-[90%] m-10">
+    <section className="card bg-card border shadow-md border-card-border rounded-2xl py-4 px-6 flex flex-col justify-center items-center text-center relative w-[90%] m-10">
       <InfoIcon text="A curated list of your favourite DSA questions. Sheet may be updated periodically." />
       <h2 className="text-lg md:text-xl font-bold font-merriweather mb-1">My Favourite Questions</h2>
       <hr className="w-full border-card-border mb-4" />

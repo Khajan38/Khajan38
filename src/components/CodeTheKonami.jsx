@@ -48,7 +48,7 @@ const CodeTheKonami = ({ setCodeSuccessful, setGame }) => {
 
   return (
     <section className="w-full py-4 px-10 rounded-xl flex flex-col items-start gap-5">
-      <div className="w-full flex flex-col md:flex-row justify-center items-center gap-4">  
+      <div className="w-full flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">  
         <h2 className="text-lg md:text-xl font-bold underline font-great self-center">Code The Konami!</h2>
         <button onClick={downloadSolution} className="text-sm border font-bold" style={{backgroundColor: "var(--color-card)", color: "var(--color-muted)", padding: "3px 10px"}}><FontAwesomeIcon icon={faDownload} /> View Solution</button>
       </div>

@@ -56,13 +56,19 @@ body {
 }
 
 button {
-  @apply bg-accent text-accent-text px-4 py-2 rounded-lg cursor-pointer transition-all duration-500  hover:bg-accent-strong hover:scale-110;
+  @apply bg-accent text-accent-text px-4 py-2 rounded-lg cursor-pointer transition-all duration-500  hover:bg-accent-strong hover:scale-110 active:scale-50;
 }
 a {
   @apply inline-block text-accent-text transition-all duration-500 hover:text-accent-text-strong hover:scale-110;
 }
 td {
   @apply border-2 border-accent-text-strong text-center
+}
+.card {
+  @apply transition-all duration-700 translate-y-5 opacity-0;
+}
+.card-visible {
+  @apply translate-y-0 opacity-100;
 }
 
 
