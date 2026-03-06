@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef pair<int, int> pli;
+vector<char> characters = {'U', 'U', 'D', 'D', 'L', 'R', 'L', 'R', 'B', 'A'};
+
+vector<pli> solve(vector<vector<char>>& adj, const int& m, const int& n, int i, int j, int k, vector<pli>& cur){
+    if (i >= m || i < 0 || j >= n || j < 0) return {};
+    if (adj[i][j] != characters[k]) return {};
+    cur.push_back({i, j}); ++k;
+    if (k == 10) return cur;
+    vector<pli> result;
+    result = solve(adj, m, n, i + 1, j, k, cur);
+    if (result.size() == 10){cur.pop_back(); return result;}
+    result = solve(adj, m, n, i, j + 1, k, cur);
+    if (result.size() == 10){cur.pop_back(); return result;}
+    cur.pop_back();
+    return {};
+}
+
+int main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+    int m, n; cin>>m>>n;
+    vector<vector<char>> adj(m, vector<char>(n));
+    vector<pli> startPos;
+    for(int i = 0; i < m; ++i)
+        for(int j = 0; j < n; ++j){
+            cin>>adj[i][j];
+            if (adj[i][j] == 'U') startPos.push_back({i, j});
+        }
+    vector<pli> result;
+    for(const auto& [i, j]: startPos){
+        vector<pli> potentialResult = {};
+        result = solve(adj, m, n, i, j, 0, potentialResult);
+        if (result.size() == 10) break;
+    } if (result.size() != 10) cout<<-1<<endl;
+    else for(int i = 0; i < 10; ++i) cout<<result[i].first<<" "<<result[i].second<<endl;
+    return 0;
+}

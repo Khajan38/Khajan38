@@ -5,20 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 const BASE_URI = import.meta.env.VITE_APP_API_BASE_URL;
 
-const MySheet = ({codeSuccessful, setLoading, setError, setCodeSuccesful, setKonamiInput, platformIcons}) => {
+const MySheet = ({codeSuccessful, setCodeSuccesful, setKonamiInput, platformIcons}) => {
   const [topics, setTopics] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [visible, setVisible] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
     if (!codeSuccessful) return;
-    setLoading(true);
     const abortController = new AbortController();
     const fetchSheet = async () => {
       try{
+        setLoading(true);
         const response = await axios.get(`${BASE_URI}/cp/sheet`, { signal: abortController.signal });
         setTopics(response?.data?.topics);
         setQuestions(response?.data?.questions);
-        for (let i=0; i<response?.data?.topics?.length; i++) setVisible(prev => [...prev, false]);
+        setVisible(new Array(response?.data?.topics?.length).fill(false));
       } catch(err){
         if (err.name === "CanceledError" || err.code === "ERR_CANCELED") return;
         console.error("Error fetching sheet data:");
@@ -30,6 +32,14 @@ const MySheet = ({codeSuccessful, setLoading, setError, setCodeSuccesful, setKon
   }, [codeSuccessful]);
   
   if (!codeSuccessful) return;
+  if(loading) return <>
+    <div className="toast-overlay" />
+    <div className="toast-message processing">Loading the Data...</div>
+  </>;
+  if(error) return <>
+    <div className="toast-overlay" onClick={() => { setError(null); }} />
+    <div className="toast-message error" onClick={() => { setError(null); }}>{error}</div>
+  </>
   return (
   <>
     <section className="bg-card border shadow-md border-card-border rounded-2xl py-4 px-6 flex flex-col justify-center items-center text-center relative w-[90%] m-10">

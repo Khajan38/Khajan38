@@ -20,7 +20,7 @@ const App = () => {
   }, []);
 
   return (<div id="app">
-    {/* <Loading_Screen /> */}
+    <Loading_Screen />
     <Header />
     <main className="flex-1 flex flex-col">
       <Routes>

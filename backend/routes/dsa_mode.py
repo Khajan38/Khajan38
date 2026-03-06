@@ -1,7 +1,8 @@
 import httpx, subprocess, os
 from dataclasses import asdict
-from fastapi import APIRouter, FastAPI, UploadFile, File
+from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import JSONResponse
+from config import logger
 from routes.cp_structures import Question
 
 dsa_mode_router = APIRouter()
@@ -40,52 +41,63 @@ async def get_cp_data():
     result = {"topics": topics, "questions": questions_mapped}
     return JSONResponse(status_code=200, content=serialize_dsa_data(result))
 
-GRID = [
-['↑','→','↓','←','A'],
-['↑','↓','→','B','↓'],
-['←','→','↓','↑','←'],
-['←','→','B','A','→']
-]
-
-KONAMI = ['↑','↑','↓','↓','←','→','←','→','B','A']
+TESTCASE = """6 5
+U U D B A
+R A D L B
+B L B R L
+A B A R R
+R L R A B
+B A B B A
+"""
+EXPECTED_PATH = [(0,0), (0,1), (0,2), (1,2), (1,3), (2,3), (2,4), (3,4), (4,4), (5,4)]
 
 def parse_output(output):
-    lines = output.split("\n")
+    lines = output.strip().split("\n")
+    if len(lines) == 1 and lines[0].strip() == "-1": return None
     path = []
     for line in lines:
-        r,c = map(int,line.split())
-        path.append((r,c))
+        parts = line.strip().split()
+        if len(parts) != 2: raise ValueError("Invalid output format")
+        r, c = map(int, parts)
+        path.append((r, c))
     return path
 
 def validate_path(path):
-    if len(path) != 10: return False
-    visited = set()
-    sequence = []
-    for r,c in path:
-        if (r,c) in visited: return False
-        visited.add((r,c))
-        if r<0 or r>=len(GRID) or c<0 or c>=len(GRID[0]): return False
-        sequence.append(GRID[r][c])
-    if sequence != KONAMI: return False
-    for i in range(1,len(path)):
-        r1,c1 = path[i-1]
-        r2,c2 = path[i]
-        if abs(r1-r2) + abs(c1-c2) != 1: return False
+    if path is None: return False
+    if len(path) != len(EXPECTED_PATH): return False
+    for i in range(len(path)):
+        if path[i] != EXPECTED_PATH[i]: return False
     return True
 
-@dsa_mode_router.post("/api/konami/submit")
+@dsa_mode_router.post("/cp/konami/submit")
 async def submit_code(file: UploadFile = File(...)):
     filename = f"temp_{file.filename}"
-    with open(filename,"wb") as f: f.write(await file.read())
+    with open(filename, "wb") as f: f.write(await file.read())
+    exe = "solution.out"
+    classname = filename.replace(".java", "")
     try:
         if filename.endswith(".cpp"):
-            exe = "solution.out"
-            subprocess.run(["g++", filename, "-o", exe], check=True)
-            result = subprocess.run(["./"+exe], capture_output=True, text=True)
-        elif filename.endswith(".py"): result = subprocess.run(["python", filename], capture_output=True, text=True)
-        else: return {"success": False, "error": "Unsupported language"}
+            compile_process = subprocess.run(["g++", filename, "-o", exe], capture_output=True, text=True)
+            if compile_process.returncode != 0: return {"success": False, "content": "Compilation Error", "error": compile_process.stderr}
+            result = subprocess.run(["./" + exe],input=TESTCASE, capture_output=True, text=True, timeout=3)
+        elif filename.endswith(".py"):
+            result = subprocess.run(["python", filename], input=TESTCASE, capture_output=True, text=True, timeout=3)
+        elif filename.endswith(".java"):
+            compile_process = subprocess.run(["javac", filename], capture_output=True, text=True)
+            if compile_process.returncode != 0:
+                return {"success": False, "content": "Compilation Error", "error": compile_process.stderr}
+            result = subprocess.run(["java", classname], input=TESTCASE, capture_output=True, text=True, timeout=3)
+        else: return {"success": False, "content": "Unsupported language"}
         output = result.stdout.strip()
         path = parse_output(output)
-        if validate_path(path): return {"success": True}
-        else: return {"success": False}
-    finally: os.remove(filename)
+        if validate_path(path): return {"success": True, "content": output}
+        return {"success": False, "content": output}
+    except subprocess.TimeoutExpired:
+        return {"success": False, "content": "Time Limit Exceeded"}
+    except Exception as e:
+        return {"success": False, "content": "Runtime Error", "error": str(e)}
+    finally:
+        if os.path.exists(filename): os.remove(filename)
+        if os.path.exists(exe): os.remove(exe)
+        class_file = classname + ".class"
+        if os.path.exists(class_file): os.remove(class_file)

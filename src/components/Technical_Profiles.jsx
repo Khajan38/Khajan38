@@ -162,9 +162,9 @@ const Technical_Profiles = () => {
         <button className="bg-secondary hover:bg-secondary-strong text-surface-light-text px-4 py-2 rounded-lg" onClick={() => {setGame(2); setCodeSuccessful(false); setKonamiInput("");}}>Catch the Konami</button>
       </div>
     </section>
-    {game === 1 && <CodeTheKonami setCodeSuccessful={setCodeSuccessful} />}
-    {game === 2 && <CatchTheKonami setCodeSuccessful={setCodeSuccessful} />}
-    <MySheet codeSuccessful={codeSuccessful} setLoading={setLoading} setError={setError} setCodeSuccesful={setCodeSuccessful} setKonamiInput={setKonamiInput} platformIcons={platformIcons}/>
+    {game === 1 && <CodeTheKonami setCodeSuccessful={setCodeSuccessful} setGame={setGame} />}
+    {game === 2 && <CatchTheKonami setCodeSuccessful={setCodeSuccessful} setGame={setGame} />}
+    <MySheet codeSuccessful={codeSuccessful} setCodeSuccesful={setCodeSuccessful} setKonamiInput={setKonamiInput} platformIcons={platformIcons}/>
     <MarqueeCard links={links} usernames={usernames}/>
   </div>)
 }
