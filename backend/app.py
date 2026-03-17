@@ -1,6 +1,7 @@
 import os
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
+from scheduler.jobs import start_scheduler
 from fastapi.middleware.cors import CORSMiddleware
 from config import mongo_client
 from routes.cp_schema import cp_router
@@ -10,6 +11,7 @@ BASE_URI = os.getenv("BASE_URI")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("🛑 Application starting up")
+    start_scheduler()
     yield # Runs app here
     print("🛑 Application shutting down")
     mongo_client.close()
@@ -28,7 +30,7 @@ async def rootBackend():
         "status": "running",
         "endpoints": {
             "prefix": '/api',
-            # "orders": ['/order', '/getOrderData', '/getOrder', '/getOrderQR']
+            "technical section": ['/cp', '/cp/refresh', '/cp/platforms']
         }
     }
 
