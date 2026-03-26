@@ -1,3 +1,4 @@
+import asyncio
 from fastapi import APIRouter
 from datetime import datetime, timedelta
 from dataclasses import asdict
@@ -22,7 +23,7 @@ async def fetch_and_store(collection):
 
 @cp_router.get("/cp/platforms")
 async def get_all_platforms():
-    return {"message": "Successfully Grabbed", "usernames": CP_USERNAMES, "links": CP_PROFILE_LINKS,}
+    return {"message": "Successfully Grabbed", "usernames": CP_USERNAMES, "links": CP_PROFILE_LINKS}
 
 @cp_router.get("/cp")
 async def get_cp_data():
@@ -30,10 +31,12 @@ async def get_cp_data():
     cached = await collection.find_one({"type": "aggregate"}, {"_id": 0})
     if cached:
         last_updated = cached.get("last_updated")
-        if last_updated and isinstance(last_updated, datetime):
+        if last_updated:
             age = datetime.utcnow() - last_updated
             if age < timedelta(hours=CACHE_DURATION_HOURS):
                 return {"source": "cache", "data": cached["data"], "last_updated": last_updated}
+            asyncio.create_task(fetch_and_store(collection))
+            return {"source": "stale-cache-refreshing", "data": cached["data"], "last_updated": last_updated}
     mongo_data = await fetch_and_store(collection)
     return {"source": "fresh", "data": mongo_data}
 
