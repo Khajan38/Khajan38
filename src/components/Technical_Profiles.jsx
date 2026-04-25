@@ -4,7 +4,7 @@ import { InfoIcon, MarqueeCard } from "./Commons";
 import { QuestionTally, ContestTally, RankTally } from "./Technical_Profiles_Components";
 import { MySheet } from "./DSA_Mode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
+import { faDeleteLeft, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import CodeTheKonami from "./CodeTheKonami";
 import RearrangeTheKonami from "./RearrangeTheKonami";
 import Konami1 from "../assets/Konami1.png";
@@ -21,6 +21,7 @@ const Technical_Profiles = () => {
   const [codeSuccessful, setCodeSuccessful] = useState(false);
   const [konamiInput, setKonamiInput] = useState("");
   const [game, setGame] = useState(0);
+  const [showAll, setShowAll] = useState(false);
   const platformIcons = {
     "leetcode": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/leetcode/leetcode-original.svg",
     "codestudio": "https://abhishektungala.github.io/Official_website/img/cn.png", 
@@ -131,16 +132,19 @@ const Technical_Profiles = () => {
             </section>
           </div>
           <ContestTally idvStats={idvStats} platformIcons={platformIcons} total_contests={globalStats.total_contests}/>
-          <section className="card bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative">
+          <section className="card bg-card border shadow-md border-card-border rounded-lg p-4 text-center relative flex flex-col gap-4">
             <h2 className="text-base md:text-lg font-semibold mb-2 text-muted font-merriweather">Badges Earned</h2>
             <hr className="text-muted w-full h-1.5"/>
-            <div className="mt-4 flex flex-wrap gap-4 justify-center align-center">
-            {globalStats.badges?.map((badge, index) => (
-              <div key={index} className="flex flex-col items-center justify-center w-20 h-auto flex-start wrap-break-word">
+            <div className="flex flex-wrap gap-4 justify-center align-center">
+            {globalStats.badges?.slice(0, showAll ? globalStats.badges.length : 5).map((badge, i) => (
+              <div key={i} className="flex flex-col items-center justify-center w-20 h-auto flex-start wrap-break-word">
                 <img src={badge.icon} alt={badge.name} className="w-15 h-15 md:w-20 md:h-20" />
                 <span className="text-xs mt-1">{badge.name}</span>
               </div>
             ))}</div>
+            <span className="text-sm md:text-base cursor-pointer" onClick={() => setShowAll(prev => !prev)}>
+              {showAll ? "Show Less" : "Show More"} <FontAwesomeIcon icon={faChevronDown} className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}/>
+            </span>
           </section>
         </section>
 

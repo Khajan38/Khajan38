@@ -10,8 +10,8 @@ const Home = () => {
     <img src={male} className="absolute md:h-[75%] top-10 -right-40 md:top-32 md:-right-50" controls />
     <main className="flex flex-col relative items-center justify-center gap-8 z-1 mx-4 my-4 overflow-hidden">
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 z-10 w-[90%] my-6">
-        <figure className="w-[80%] h-full flex justify-center items-center">
-          <img src={myPic} className="w-full h-full rounded-[50px] shadow-lg" alt="My Picture" />
+        <figure className="w-[80%] aspect-square flex justify-center items-center">
+          <img src={myPic} className="w-full h-full object-top object-cover rounded-[50px] shadow-lg" alt="My Picture" />
         </figure>
         <section className="flex flex-col gap-1 md:gap-2 justify-center items-center text-center">
           <span className="font-great text-2xl md:text-4xl font-bold text-accent-text-strong"> Hi, I'm Khajan Bhatt</span>

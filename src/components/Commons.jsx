@@ -1,20 +1,33 @@
 import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { createPortal } from "react-dom";
 
 const InfoIcon = ({ text }) => {
   const [visible, setVisible] = useState(false);
   const containerRef = useRef(null);
+  const [coords, setCoords] = useState({ top: 0, left: 0 });
+
+  const handleClick = () => {
+    if (!visible) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setCoords({top: rect.bottom + 8, left: rect.left,});
+    } setVisible(!visible);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (containerRef.current && !containerRef.current.contains(event.target)) setVisible(false);
     }; document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
   return (
     <div ref={containerRef} className="absolute inline-block top-1 right-1" onMouseLeave={() => setVisible(false)}>
-      <FontAwesomeIcon icon={faCircleInfo} className="cursor-pointer text-muted" onClick={() => setVisible(!visible)} />
-      {visible && (<div className="absolute z-10 mt-2 w-38 md:w-64 p-3 text-xs md:text-sm bg-info text-surface-dark-text rounded shadow-lg">{text}</div>)}
+      <FontAwesomeIcon icon={faCircleInfo} className="cursor-pointer text-muted" onClick={handleClick} />
+      {visible && createPortal(
+        <div className="absolute z-100 mt-2 w-38 md:w-64 p-3 text-xs md:text-sm bg-info text-surface-dark-text rounded shadow-lg" style={{top: coords.top, left: coords.left}}>{text}</div>, document.body
+      )}
     </div>
   );
 };

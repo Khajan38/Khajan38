@@ -11,7 +11,7 @@ const Loading_Screen = () => {
   return (
   <div id="loading-screen" className={!loading ? "hidden" : ""}>
     <div className="loading-content">
-      <p id="typewriter">Welcome to the portfolio of</p>
+      <p id="typewriter">Welcome to the Portfolio of</p>
     </div>
     <h1 className="real" aria-label="Khajan Bhatt"> 
       <div className="h1-text text-1" aria-hidden="true">
