@@ -28,6 +28,7 @@ const App = () => {
         <Route path="/profiles" element={<Technical_Profiles />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/personal" element={<Personal />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </main>
     <Footer />

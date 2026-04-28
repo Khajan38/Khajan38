@@ -56,7 +56,7 @@ body {
 }
 
 button {
-  @apply bg-accent text-accent-text px-4 py-2 rounded-lg cursor-pointer transition-all duration-500  hover:bg-accent-strong hover:scale-110 active:scale-50;
+  @apply text-sm md:text-base bg-accent text-accent-text px-4 py-2 rounded-lg cursor-pointer transition-all duration-500  hover:bg-accent-strong hover:scale-110 active:scale-50;
 }
 a {
   @apply inline-block text-accent-text transition-all duration-500 hover:text-accent-text-strong hover:scale-110;
