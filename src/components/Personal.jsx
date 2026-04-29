@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling, faUserGroup, faMountainSun, faYinYang } from "@fortawesome/free-solid-svg-icons";
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Carousel, Experience, Achievements, Interests, AnonymousMessageBox } from './Personal_components';
 
-import GEHU from '../assets/Institutions/GEHU.webp'
-import School_1 from '../assets/Institutions/Saraswati_Academy_1.png'
-import School_2 from '../assets/Institutions/Saraswati_Academy_2.png'
+import Initial_Quiz from '../assets/personal-extras/Initial-Quiz.gif';
+import Correct_Answer_Quiz from '../assets/personal-extras/Correct-Answer-Quiz.gif';
+import Wrong_Answer_Quiz from '../assets/personal-extras/Wrong-Answer-Quiz.gif';
 
 const GITHUB_USERNAME = import.meta.env.VITE_APP_GITHUB_USERNAME;
 const LINKEDIN_USERNAME = import.meta.env.VITE_APP_LINKEDIN_USERNAME;
@@ -36,8 +37,8 @@ const Personal = () => {
       <span className="flex flex-col text-2xl md:text-4xl font-great gap-2"><h1>The Person</h1><h1>behind the Commits</h1></span>
       <span className='text-sm md:text-base wrap-break-word max-w-130'>Not just what I build — but how I think, what drives me, and the curious paths I wander beyond the terminal.</span>
       <div className="flex gap-4 mt-4">
-        <button><a href={`https://www.linkedin.com/in/${LINKEDIN_USERNAME}/`} target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" title="LinkedIn">Learn More</a></button>
-        <button><a href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noreferrer" aria-label="GitHub Profile" title="GitHub">Connect</a></button>
+        <button><a href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noreferrer" aria-label="GitHub Profile" title="GitHub">Learn More <FontAwesomeIcon icon={faGithub} /></a></button>
+        <button><a href={`https://www.linkedin.com/in/${LINKEDIN_USERNAME}/`} target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" title="LinkedIn">Connect <FontAwesomeIcon icon={faLinkedin} /></a></button>
       </div>
     </section>
     <Carousel />
@@ -77,7 +78,7 @@ const Personal = () => {
       <span className='text-lg md:text-xl text-accent' style={{ fontFamily: "var(--font-great)" }}> Where it all began </span></div>
       <div className="relative pl-8 border-l-2 border-accent-strong mt-2 grid grid-cols-1 md:grid-cols-[1fr_9fr] gap-4">
         <div className="absolute -left-2 -top-1.5 w-3.5 h-3.5 rounded-[100%] bg-accent border border-bg" />
-        <img src={GEHU} alt="College Pic" className="w-auto h-full object-cover rounded-xl border shadow-md" />
+        <img src="/Institutions/GEHU-Education.webp" alt="College Pic" className="w-auto h-full object-cover rounded-xl border shadow-md" />
         <div><div className="text-xs text-muted">2023 – 2027</div>
         <div className="text-sm md:text-base font-bold">B.Tech in Computer Science & Engineering</div>
         <div className="text-xs md:text-sm text-accent">Graphic Era Hill University · Bhimtal · GPA: 9.5</div>
@@ -85,7 +86,7 @@ const Personal = () => {
       </div>
       <div className="relative pl-8 py-2 border-l-2 border-accent-strong grid grid-cols-1 md:grid-cols-[1fr_9fr] gap-4">
         <div className="absolute -left-2 top-1.5 w-3.5 h-3.5 rounded-[100%] bg-accent border border-bg" />
-        <img src={School_1} alt="School Pic" className="w-auto h-full object-cover rounded-xl border shadow-md  " />
+        <img src="/Institutions/Saraswati_Academy-Education-1.png" alt="School Pic" className="w-auto h-full object-cover rounded-xl border shadow-md  " />
         <div><div className="text-xs text-muted">2021 – 2022</div>
         <div className="text-sm md:text-base font-bold">Intermediate - Class XII</div>
         <div className="text-xs md:text-sm text-accent">Saraswati Academy · Haldwani · Grade: 95.6%</div>
@@ -93,7 +94,7 @@ const Personal = () => {
       </div>
       <div className="relative pl-8 py-2 border-l-2 border-accent-strong grid grid-cols-1 md:grid-cols-[1fr_9fr] gap-4">
         <div className="absolute -left-2 top-1.5 w-3.5 h-3.5 rounded-[100%] bg-accent border border-bg" />
-        <img src={School_2} alt="School Pic" className="w-auto h-full object-cover rounded-xl border shadow-md  " />
+        <img src="/Institutions/Saraswati_Academy-Education-2.png" alt="School Pic" className="w-auto h-full object-cover rounded-xl border shadow-md  " />
         <div><div className="text-xs text-muted">2019 – 2020</div>
         <div className="text-sm md:text-base font-bold">Matriculation - Class X</div>
         <div className="text-xs md:text-sm text-accent">Saraswati Academy · Haldwani · Grade: 96%</div>
@@ -167,8 +168,20 @@ const MatchGame = () => {
     setAnswer(prev => {const updated = [...prev]; updated[qIndex] = optionIndex; return updated;});
     if (answers[qIndex] === optionIndex) {setScore(prev => prev + 1);}
   };
+  if (index === questions.length){
+    return (
+      <section className="w-full mx-auto rounded-2xl border border-card-border bg-card flex flex-col items-center justify-center p-8 gap-6 shadow-md">
+        <h1 className="text-2xl font-bold text-accent">Quiz Completed 🎉</h1>
+        <div className="w-32 h-32 rounded-full border-8 border-accent/20 flex items-center justify-center">
+          <span className="text-2xl font-bold text-accent">{Math.round((score / answers.length) * 100)}%</span>
+        </div>
+        <p className="text-base text-muted text-center">You scored <span className="text-accent font-semibold">{score}</span> out of {questions.length}</p>
+        <button onClick={() => {setIndex(0); setScore(0); setAnswer(Array(answers.length).fill(null));}} className="px-6 py-2 rounded-lg bg-accent text-white font-medium hover:opacity-90 transition">Retry Quiz</button>
+      </section>
+    );
+  }
   return(
-    <section className="w-full h-auto rounded-lg border border-card-border bg-card grid grid-cols-1 md:grid-cols-[1fr_auto] items-center pl-8 p-4 gap-4">
+    <section className="w-full h-auto rounded-lg border border-card-border bg-card grid grid-cols-1 md:grid-cols-[1fr_auto] md:pl-8 p-6 md:p-4 gap-4">
       <div className="flex flex-col gap-4">
         <h1 className="text-xs md:text-sm font-bold text-muted"> QUESTION {index + 1} OF {questions.length} </h1>
         <p className="md:text-base">{questions[index].question}</p>
@@ -177,17 +190,17 @@ const MatchGame = () => {
           <button key={i} className="rounded-lg py-1 px-2 text-left" style={{fontSize: 'var(--text-xs)', backgroundColor: answer[index] !== null && answer[index] === i? "var(--color-accent-strong)" : "var(--color-accent)"}} onClick={() => handleClick(index, i)}>{option}</button>
         ))}
         </div>
-        <div className='flex flex-row justify-between items-center'>
+        <div className='flex flex-row justify-between items-center mt-2'>
           <div className="flex flex-row gap-1 items-center justify-center">
             {[...Array(answers.length)].map((_, i) => (
               <div key={i} className={`w-3 h-3 rounded-full ${i < index ? (answer[i] === answers[i] ? "bg-green-500" : "bg-red-500") : "bg-card-border"}`} />
             ))}
           </div>
-          {answer[index] !== null && <p className={`text-sm ${answers[index] === answer[index] ? "text-green-500" : "text-red-500"}`}>{answers[index] === answer[index] ? "Same wavelength! ⚡" : "Different frequency! 🌊"}</p>}
-          {answer[index] !== null && <button onClick={() => {setIndex(index + 1);}} className="self-end mt-2" style={{fontSize: 'var(--text-xs)'}} >{index === questions.length - 1 ? "See Results" : "Next Question"}</button>}
+          {window.innerWidth > 768 && answer[index] !== null && <p className={`text-sm ${answers[index] === answer[index] ? "text-green-500" : "text-red-500"}`}>{answers[index] === answer[index] ? "Same wavelength! ⚡" : "Different frequency! 🌊"}</p>}
+          {answer[index] !== null && <button onClick={() => {setIndex(index + 1);}} style={{fontSize: 'var(--text-xs)'}} >{index === questions.length - 1 ? "See Results" : "Next Question"}</button>}
         </div>
       </div>
-      <img src='/src/assets/personal-extras/right-wrong.gif' alt="Avatar" className="w-auto h-50 bg-transparent mx-5" />
+      <center><img src={answer[index] == null? Initial_Quiz : (answer[index] === answers[index] ? Correct_Answer_Quiz : Wrong_Answer_Quiz)} alt="Avatar" className="w-auto md:w-60 h-auto bg-transparent md:ml-10 md:mr-5" /></center>
     </section>
   );
 };

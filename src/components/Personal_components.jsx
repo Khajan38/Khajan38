@@ -2,19 +2,21 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-import My_10th_Pic from '../assets/My-Images/My_10th_Pic.jpg'
-import My_12th_Pic from '../assets/My-Images/My_College_Pic.png'
-import My_College_Pic from '../assets/My-Images/my-pic.png'
-import Khajan_Bhatt from '../assets/My-Images/Khajan-Bhatt.jpg'
-import Tution from '../assets/My-Images/Tution.jpg'
-import Mail from '../assets/personal-extras/postal-envelope.gif';
+import My_10th_Pic from '../assets/My-Images/My-10th-Pic.jpg';
+import My_12th_Pic from '../assets/My-Images/My-12th-Pic.png';
+import My_College_Pic from '../assets/My-Images/My-College-Pic.png';
+import Khajan_Bhatt from '../assets/My-Images/Khajan-Bhatt.jpg';
+import My_Tution_Pic from '../assets/My-Images/My-Tution-Pic.jpg';
+import MailBackground from '../assets/personal-extras/Anonymous-Mail-Background.jpg';
+import Mail from '../assets/personal-extras/Anonymous-Mail.gif';
+import AfterMail from '../assets/personal-extras/Anonymous-Mail-Sending.gif';
 
 const CODOLIO_USERNAME = import.meta.env.VITE_APP_CODOLIO_USERNAME;
 const FORMSPREE_ID = import.meta.env.VITE_APP_FORMSPREE_ID;
 
 const Carousel = () => {
   const [index, setIndex] = useState(2);
-  const images = [My_10th_Pic, Tution, My_College_Pic, My_12th_Pic, Khajan_Bhatt];
+  const images = [My_10th_Pic, My_Tution_Pic, My_College_Pic, My_12th_Pic, Khajan_Bhatt];
   const next = () => setIndex((prev) => (prev + 1) % images.length);
   const prev = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
   const prevIndex = (index - 1 + images.length) % images.length;
@@ -36,8 +38,8 @@ const Carousel = () => {
 
 const Experience = ( {id} ) => {
   const experiences = [
-    { title: "Technology Apprentice", company: "Morgan Stanley, Banglore", start: "Jun 2026", end: "Present", tags: ["Software Engineering", "Distibuted Systems", "REST APIs"], img: "/src/assets/Institutions/Morgan_Stanley.webp" },
-    { title: "Freelancer", company: "Haldwani, Remote", start: "2023", end: "Present", tags: ["Full Stack Software Development", "REST APIs", "React", "Tailwind", "FastAPI", "Flask", "MongoDB", "MySQL"], img: "/src/assets/personal-extras/Freelancing.webp" }
+    { title: "Technology Apprentice", company: "Morgan Stanley, Banglore", start: "Jun 2026", end: "Present", tags: ["Software Engineering", "Distibuted Systems", "REST APIs"], img: "/Institutions/Morgan_Stanley-logo.webp" },
+    { title: "Freelancer", company: "Haldwani, Remote", start: "2023", end: "Present", tags: ["Full Stack Software Development", "REST APIs", "React", "Tailwind", "FastAPI", "Flask", "MongoDB", "MySQL"], img: "/personal-extras/Freelancing-logo.webp" }
   ];
   return (
   <section id={id} className='w-full flex flex-col gap-2'>
@@ -65,20 +67,20 @@ const Achievements = ( {id} ) => {
   const [showAll, setShowAll] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   useEffect(() => {
-    setIsDesktop((window.innerWidth > 768));
-    const handleResize = () => setIsDesktop((window.innerWidth > 768));
+    setIsDesktop((window.innerWidth > 1024));
+    const handleResize = () => setIsDesktop((window.innerWidth > 1024));
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [window.innerWidth]);
   const achievements = [
-    {icon: "/src//assets/personal-extras/Programming.webp", title: "Competitive Programming Ratings", desc: "LeetCode Knight (2075), CodeChef 3★ (1653), Codeforces Pupil (1320) with strong algorithm design.", link: `https://codolio.com/profile/${CODOLIO_USERNAME}`},
-    {icon: "/src//assets/personal-extras/Programming.webp", title: "DSA Problem Solving", desc: "Solved 750+ problems across major platforms with consistent performance in medium–hard sets.", link: `https://codolio.com/profile/${CODOLIO_USERNAME}`},
-    {icon: "/src/assets/Institutions/gate-logo.png", title: "GATE 2026", desc: "Qualified GATE 2026 (CS) with AIR 1625, demonstrating strong core CS fundamentals.", link: "https://photos.google.com/share/AF1QipMWST7GfgeUN-OPdvqATad0Cqdvv6roStkPNTbiNjL9W24p4mqunO97nDW3oi_wtQ/photo/AF1QipOpsU2rZ-HH7GBBMLaSoCDqtzPvWKWqmc6zZL-5?key=XzFsXzZ6djdFbnpKOGdlbmVvWE9OMzdjaTI0WnZR"},
-    {icon: "/src/assets/Institutions/GEHU-Logo.png", title: "Student Achiever Award", desc: "Awarded Student Achiever 2026 for highest CGPA campus-wide in Vth Semester.", link: "https://photos.google.com/share/AF1QipMWST7GfgeUN-OPdvqATad0Cqdvv6roStkPNTbiNjL9W24p4mqunO97nDW3oi_wtQ/photo/AF1QipMi9Cz0l28rZGJbte0GmW7b85vMhSkQokP4n6jH?key=XzFsXzZ6djdFbnpKOGdlbmVvWE9OMzdjaTI0WnZR"},
-    {icon: "/src/assets/Institutions/GEHU-Logo.png", title: "Academic Rank", desc: "Secured 1st Rank in 1st year at GEHU Bhimtal (CGPA: 9.66).", link: "https://khajan38.github.io/Resume/Khajan-Bhatt-Marksheets.pdf"},
-    {icon: "/src/assets/Institutions/nptel-logo.png", title: "NPTEL DSA", desc: "Ranked in Top 1% (All India) in NPTEL’s Data Structures and Algorithms Design course.", link: "https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs81/Course/NPTEL25CS81S45780045610927233.pdf"},
-    {icon: "/src/assets/Institutions/nptel-logo.png", title: "NPTEL AI", desc: "Ranked in Top 5% (All India) in NPTEL’s AI: Knowledge Representation and Reasoning course.", link: "https://archive.nptel.ac.in/content/noc/NOC25/SEM1/Ecertificates/106/noc25-cs07/Course/NPTEL25CS07S104660024904207522.pdf"},
-    {icon: "/src/assets/Institutions/School_logo.png", title: "Academic Excellence", desc: "Received Shri B.S. Adhikari Memorial Scholarship for scoring 95.8% in Class 12th (97% in PCM).", link: "https://photos.google.com/share/AF1QipMWST7GfgeUN-OPdvqATad0Cqdvv6roStkPNTbiNjL9W24p4mqunO97nDW3oi_wtQ/photo/AF1QipNPwOlxlgVfQ-CUFpfKbkM_DUD061nyhHNLHNkH?key=XzFsXzZ6djdFbnpKOGdlbmVvWE9OMzdjaTI0WnZR"}
+    {icon: "/personal-extras/Programming-logo.webp", title: "Competitive Programming Ratings", desc: "LeetCode Knight (2075), CodeChef 3★ (1653), Codeforces Pupil (1320) with strong algorithm design.", link: `https://codolio.com/profile/${CODOLIO_USERNAME}`},
+    {icon: "/personal-extras/Programming-logo.webp", title: "DSA Problem Solving", desc: "Solved 750+ problems across major platforms with consistent performance in medium–hard sets.", link: `https://codolio.com/profile/${CODOLIO_USERNAME}`},
+    {icon: "/Institutions/GATE-logo.png", title: "GATE 2026", desc: "Qualified GATE 2026 (CS) with AIR 1625, demonstrating strong core CS fundamentals.", link: "https://photos.google.com/share/AF1QipMWST7GfgeUN-OPdvqATad0Cqdvv6roStkPNTbiNjL9W24p4mqunO97nDW3oi_wtQ/photo/AF1QipOpsU2rZ-HH7GBBMLaSoCDqtzPvWKWqmc6zZL-5?key=XzFsXzZ6djdFbnpKOGdlbmVvWE9OMzdjaTI0WnZR"},
+    {icon: "/Institutions/GEHU-Logo.png", title: "Student Achiever Award", desc: "Awarded Student Achiever 2026 for highest CGPA campus-wide in Vth Semester.", link: "https://photos.google.com/share/AF1QipMWST7GfgeUN-OPdvqATad0Cqdvv6roStkPNTbiNjL9W24p4mqunO97nDW3oi_wtQ/photo/AF1QipMi9Cz0l28rZGJbte0GmW7b85vMhSkQokP4n6jH?key=XzFsXzZ6djdFbnpKOGdlbmVvWE9OMzdjaTI0WnZR"},
+    {icon: "/Institutions/GEHU-Logo.png", title: "Academic Rank", desc: "Secured 1st Rank in 1st year at GEHU Bhimtal (CGPA: 9.66).", link: "https://khajan38.github.io/Resume/Khajan-Bhatt-Marksheets.pdf"},
+    {icon: "/Institutions/NPTEL-logo.png", title: "NPTEL DSA", desc: "Ranked in Top 1% (All India) in NPTEL’s Data Structures and Algorithms Design course.", link: "https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs81/Course/NPTEL25CS81S45780045610927233.pdf"},
+    {icon: "/Institutions/NPTEL-logo.png", title: "NPTEL AI", desc: "Ranked in Top 5% (All India) in NPTEL’s AI: Knowledge Representation and Reasoning course.", link: "https://archive.nptel.ac.in/content/noc/NOC25/SEM1/Ecertificates/106/noc25-cs07/Course/NPTEL25CS07S104660024904207522.pdf"},
+    {icon: "/Institutions/Saraswati_Academy-logo.png", title: "Academic Excellence", desc: "Received Shri B.S. Adhikari Memorial Scholarship for scoring 95.8% in Class 12th (97% in PCM).", link: "https://photos.google.com/share/AF1QipMWST7GfgeUN-OPdvqATad0Cqdvv6roStkPNTbiNjL9W24p4mqunO97nDW3oi_wtQ/photo/AF1QipNPwOlxlgVfQ-CUFpfKbkM_DUD061nyhHNLHNkH?key=XzFsXzZ6djdFbnpKOGdlbmVvWE9OMzdjaTI0WnZR"}
   ];
   return (
   <section id={id} className='w-full flex flex-col gap-2'>
@@ -123,10 +125,10 @@ const Interests = ( {id} ) => {
   <section id={id} className='w-full flex flex-col gap-2'>
     <div><span className='text-sm md:text-base text-muted'>05 • Interests and Passions</span> <br />
     <span className='text-lg md:text-xl text-accent' style={{ fontFamily: "var(--font-great)" }}> Things that light me up </span></div>
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-2.5 mt-2 items-center justify-center">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-2.5 mt-2 md:overflow-hidden md:max-h-45">
       {displayInterests.map((interest, index) => (
-        <div key={index} className="card-visible bg-card border shadow-md border-card-border rounded-lg p-4 flex flex-col items-center justify-center min-w-0">
-          <span className="text-2xl">{interest.icon}</span>
+        <div key={index} className="card bg-card border shadow-md border-card-border rounded-lg p-4 flex flex-col items-center justify-center min-w-0">
+          <span className="text-2xl">{interest.icon}</span> 
           <span className="text-sm md:text-base font-great text-accent uppercase wrap-break-words">{interest.label}</span>
           <span className="text-xs text-muted wrap-break-word text-center">{interest.sub}</span>
         </div>
@@ -161,7 +163,7 @@ const AnonymousMessageBox = ({ id }) => {
   if (isSent) {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-[#85a1b7]">
-        <img src="/src/assets/personal-extras/Mail_sending.gif" className="w-72 rounded-lg" />
+        <img src={AfterMail} className="w-72 rounded-lg" />
       </div>
     );
   }
@@ -177,7 +179,7 @@ const AnonymousMessageBox = ({ id }) => {
       <div><span className='text-sm md:text-base text-muted'>08 • Anonymous Message Box</span> <br />
       <span className='text-lg md:text-xl text-accent' style={{ fontFamily: "var(--font-great)" }}> Say anything — no strings attached </span></div>
       <div className="hidden md:block relative w-full h-45 -mb-2">
-        <div className="absolute inset-0 bg-[url('https://static.vecteezy.com/system/resources/previews/013/109/681/large_2x/pastel-blue-aesthetic-background-can-use-for-print-template-fabric-presentation-textile-banner-poster-wallpaper-digital-paper-free-photo.jpg')] bg-repeat bg-center clip-triangle" />
+        <div className="absolute inset-0 bg-repeat bg-center clip-triangle" style={{backgroundImage:`url(${MailBackground})`}} />
       </div>
       <form className="z-11 card-visible bg-card border shadow-md border-card-border rounded-lg px-6 p-4 flex flex-col gap-4" onSubmit={handleSubmit} method="POST">
         <span className="text-xs text-muted">Got feedback on my portfolio? A question? A random shower thought you feel like sharing? Drop it here — completely anonymous. I read all messages.</span>
